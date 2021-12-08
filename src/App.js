@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom'
+import SizingSettingsProvider from './context/SizingContext'
+import BoardSettingsProvider from './context/BoardContext'
+import WinningProvider from './context/WinningContext'
+import Board from './components/Board'
+import SettingsPage from './components/SettingsPage'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <SizingSettingsProvider>
+        <BoardSettingsProvider>
+          <WinningProvider>
+            <h1>Connect 4 Game</h1>
+            <Routes>
+              <Route path='/' element={<Board />} />
+              <Route path='/settings' element={<SettingsPage />} />
+            </Routes>
+          </WinningProvider>
+        </BoardSettingsProvider>
+      </SizingSettingsProvider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
